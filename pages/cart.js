@@ -2,8 +2,10 @@ import React from "react";
 import {useSelector} from "react-redux";
 import {signIn, useSession} from "next-auth/react";
 import {loadStripe} from "@stripe/stripe-js";
+import axios from "axios";
 import Currency from "react-currency-formatter";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import CartProduct from "../components/CartProduct";
 import {selectItems, selectTotal} from "../slices/basketSlice";
 
@@ -14,7 +16,20 @@ function Cart() {
 	const total = useSelector(selectTotal);
 	const {data: session} = useSession();
 
-	const createCheckoutSession = () => {};
+	const createCheckoutSession = async () => {
+		const stripe = await stripePromise;
+
+		const checkoutSession = await axios.post("api/create-checkout-session", {
+			items: items,
+			email: session.user.email,
+		});
+
+		const result = await stripe.redirectToCheckout({
+			sessionId: checkoutSession.data.id,
+		});
+
+		if (result.error) alert(result.error.message);
+	};
 
 	return (
 		<div className="bg-gray-100">
@@ -37,7 +52,7 @@ function Cart() {
 						/>
 					))}
 				</div>
-				<div className="flex flex-col bg-white p-10 shadow-md">
+				<div className="flex flex-col bg-white m-5 p-10 space-y-10">
 					{items.length > 0 && (
 						<>
 							<h2 className="whitespace-nowrap">
@@ -56,6 +71,8 @@ function Cart() {
 					)}
 				</div>
 			</main>
+
+			<Footer />
 		</div>
 	);
 }
