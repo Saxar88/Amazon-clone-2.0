@@ -10,6 +10,7 @@ const MIN_RATING = 1;
 
 function Product({id, title, price, image}) {
 	const [rating, setRating] = useState(0);
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		setRating(
@@ -17,7 +18,6 @@ function Product({id, title, price, image}) {
 		);
 	}, []);
 
-	const dispatch = useDispatch();
 	const addItemToBasket = () => {
 		const product = {id, title, price, rating, image};
 
