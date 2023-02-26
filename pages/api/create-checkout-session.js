@@ -15,7 +15,19 @@ export default async (req, res) => {
 	const session = await stripe.checkout.sessions.create({
 		payment_method_types: ["card"],
 		shipping_address_collection: {allowed_countries: ["RO"]},
-		shipping_rates: ["shr_1M8riqGnbbBlpIzD5T4mTYwK"],
+		shipping_options: [
+			{
+				shipping_rate_data: {
+					type: "fixed_amount",
+					fixed_amount: {amount: 500, currency: "eur"},
+					display_name: "Standard shipping",
+					delivery_estimate: {
+						minimum: {unit: "business_day", value: 3},
+						maximum: {unit: "business_day", value: 5},
+					},
+				},
+			},
+		],
 		line_items: transformedItems,
 		mode: "payment",
 		success_url: `${process.env.HOST}/success`,
