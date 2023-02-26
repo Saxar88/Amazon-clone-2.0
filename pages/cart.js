@@ -1,7 +1,7 @@
 import React from "react";
 import {useSelector} from "react-redux";
 import {signIn, useSession} from "next-auth/react";
-import {loadStripe} from "@stripe/stripe-js";
+import {loadStripe} from "@stripe/stripe-js/pure";
 import axios from "axios";
 import Currency from "react-currency-formatter";
 import Header from "../components/Header";

@@ -23,6 +23,7 @@ function Header() {
 					<Image
 						onClick={() => router.push("/")}
 						src={require("../public/logo.webp")}
+						alt="logo"
 						width={135}
 						height={50}
 						className="object-contain px-3 cursor-pointer"
@@ -47,7 +48,9 @@ function Header() {
 						<p>{session ? `Hello,` : `Hello, sign in`}</p>
 						<p className="font-extrabold md:text-sm">Account & Lists</p>
 					</div>
-					<div className="link">
+					<div
+						onClick={session ? () => router.push("/order-history") : signIn}
+						className="link">
 						<p>Returns</p>
 						<p className="font-extrabold md:text-sm">& Orders</p>
 					</div>

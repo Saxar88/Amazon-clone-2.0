@@ -27,14 +27,14 @@ function Product({id, title, price, image}) {
 	return (
 		<div className="h-[30rem] flex flex-col items-center m-5 bg-white z-30 p-10">
 			<div className="relative h-52 w-52">
-				<Image src={image} fill objectFit="contain" />
+				<Image src={image} alt="product" fill className="object-contain" />
 			</div>
 			<h4 className="my-3">{title}</h4>
 			<div className="flex">
 				{Array(rating)
 					.fill()
 					.map((_, i) => (
-						<StarIcon className="h-5 text-yellow-500" />
+						<StarIcon key={i} className="h-5 text-yellow-500" />
 					))}
 			</div>
 			<div className="mb-5">
