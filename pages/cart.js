@@ -52,24 +52,22 @@ function Cart() {
 						/>
 					))}
 				</div>
-				<div className="flex flex-col bg-white m-5 p-10 space-y-10">
-					{items.length > 0 && (
-						<>
-							<h2 className="whitespace-nowrap">
-								Subtotal ({items.length} items):{" "}
-								<span className="font-bold mr-0.5">
-									<Currency quantity={total} currencey="EUR" />
-								</span>
-							</h2>
-							<button
-								role="link"
-								onClick={!session ? signIn : createCheckoutSession}
-								className="button">
-								Proceed to Checkout
-							</button>
-						</>
-					)}
-				</div>
+				{items.length > 0 && (
+					<div className="flex flex-col bg-white m-5 p-10 space-y-10">
+						<h2 className="whitespace-nowrap">
+							Subtotal ({items.length} items):{" "}
+							<span className="font-bold mr-0.5">
+								<Currency quantity={total} currencey="EUR" />
+							</span>
+						</h2>
+						<button
+							role="link"
+							onClick={!session ? signIn : createCheckoutSession}
+							className="button">
+							Proceed to Checkout
+						</button>
+					</div>
+				)}
 			</main>
 
 			<Footer />

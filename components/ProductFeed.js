@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import Product from "./Product";
 
@@ -9,10 +10,12 @@ function ProductFeed({products}) {
 				.map(({id, title, price, image}) => (
 					<Product key={id} id={id} title={title} price={price} image={image} />
 				))}
-			<img
-				src="https://links.papareact.com/dyz"
-				alt=""
-				className="md:col-span-full"
+			<Image
+				src={require("../public/lavolio-banner.jpg")}
+				alt="banner"
+				width={1500}
+				height={300}
+				className="m-auto md:col-span-full"
 			/>
 
 			{Array.from(products)

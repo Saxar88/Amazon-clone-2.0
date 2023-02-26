@@ -21,12 +21,11 @@ function Header() {
 			<div className="flex items-center bg-amazon_blue p-1 flex-grow py-2">
 				<div className="mt-2 flex items-center flex-grow sm:flex-grow-0">
 					<Image
-						src="https://links.papareact.com/f90"
+						onClick={() => router.push("/")}
+						src={require("../public/logo.webp")}
 						width={135}
 						height={50}
-						objectFit="contain"
-						className="px-3 cursor-pointer"
-						onClick={() => router.push("/")}
+						className="object-contain px-3 cursor-pointer"
 					/>
 				</div>
 				<div className="hidden sm:flex text-white items-center text-xs ml-0 mr-6 whitespace-nowrap">
@@ -54,8 +53,8 @@ function Header() {
 					</div>
 
 					<div
-						className="relative link flex items-center"
-						onClick={() => router.push("/cart")}>
+						onClick={() => router.push("/cart")}
+						className="relative link flex items-center">
 						<span className="absolute bottom-3 right-12 md:right-10 h-10 w-10 text-yellow-500 text-base font-bold">
 							{items.length}
 						</span>
